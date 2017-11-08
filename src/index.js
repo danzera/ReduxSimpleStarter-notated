@@ -12,12 +12,12 @@ const App = function() {
 	return <div>Hi!</div>;
 }
 
-// Tell React to take this component's generated HTML and put it in/on the DOM.
-// Need to create an instance of our component (App) before rendering it to the DOM, <App /> == <App></App> (a tag with no content can be a self closing tag)
+// Tell React to go find the <div> with class = "container",
+// then try to render the <App /> component's generated HTML into that <div>
+// <div class="container"> is the root node of our entire React app
+// --> future components all become children of (nested inside) this <div>
+// 1. Need to create an instance of our component (App) before rendering it to the DOM, <App /> == <App></App> (a tag with no content can be a self closing tag)
 // When writing JSX, putting component name/class in tag turns it into a component instance, i.e. gets transpiled to React.createElement(...)
-ReactDOM.render(<App />);
-
-// running at this point yields:
-// Uncaught Error: _registerComponent(...): Target container is not a DOM element.
-// Need to tell React WHERE to put the component on the page --> presently it has no idea where to put it
-// We do this by passing a second argument to ReactDOM.render()
+// 2. ReactDOM.render() takes a second arguemnt that's a reference to an existing DOM node on the page, i.e. a target container
+// document.querySelector('.container') is a reference to a <div> with class = "container"
+ReactDOM.render(<App />, document.querySelector('.container'));
