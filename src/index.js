@@ -5,7 +5,7 @@ import React from 'react'; // Goes and gets dependency/library named 'react' and
 import ReactDOM from 'react-dom'; // ReactDOM library knows how to actually render the components to the DOM (insert them into the DOM)
 
 // Create a new component that produces some HTML.
-const App = function() {
+const App = () => {
 	// This appears to return HTML, but is actually JSX. Can't have HTML in J.S. files.
 	// JSX is a subset/dialect of JavaScript that allows us to write what looks like HTML.
 	// However, it's really JavaScript behind the scenes (later transpiled by Webpack/Babel).
