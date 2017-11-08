@@ -13,12 +13,11 @@ const App = function() {
 }
 
 // Tell React to take this component's generated HTML and put it in/on the DOM.
-ReactDOM.render(App);
+// Need to create an instance of our component (App) before rendering it to the DOM, <App /> == <App></App> (a tag with no content can be a self closing tag)
+// When writing JSX, putting component name/class in tag turns it into a component instance, i.e. gets transpiled to React.createElement(...)
+ReactDOM.render(<App />);
 
 // running at this point yields:
-// "Uncaught Error: ReactDOM.render():
-// Invalid component element. Instead of passing a component class,
-// make sure to instantiate it by passing it to React.createElement."
-// 'App' is a class/type of component --> it could have many different instances
-// essentially 'App' is a factory that produces instances of the actual components that get rendered to the DOM
-// *** TAKE-AWAY: We need to instantiate our components before rendering them to the DOM.
+// Uncaught Error: _registerComponent(...): Target container is not a DOM element.
+// Need to tell React WHERE to put the component on the page --> presently it has no idea where to put it
+// We do this by passing a second argument to ReactDOM.render()
