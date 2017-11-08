@@ -1,5 +1,8 @@
 // Tell transpiler to give this file access to React.
 import React from 'react'; // Goes and gets dependency/library named 'react' and assigns it to a variable named 'React'
+// Original React library has diverged into two separate libraries.
+// React (core) library knows how to work with React components -- how to render them, nest them togeter...
+import ReactDOM from 'react-dom'; // ReactDOM library knows how to actually render the components to the DOM (insert them into the DOM)
 
 // Create a new component that produces some HTML.
 const App = function() {
@@ -10,10 +13,12 @@ const App = function() {
 }
 
 // Tell React to take this component's generated HTML and put it in/on the DOM.
-React.render(App);
+ReactDOM.render(App);
 
 // running at this point yields:
-// "Warning: React.render is deprecated. Please use ReactDOM.render from require('react-dom') instead."
-// Original React library has diverged into two separate libraries.
-// React (core) library knows how to work with React components -- how to render them, nest them togeter...
-// ReactDOM library knows how to actually render the components to the DOM (insert them into the DOM)
+// "Uncaught Error: ReactDOM.render():
+// Invalid component element. Instead of passing a component class,
+// make sure to instantiate it by passing it to React.createElement."
+// 'App' is a class/type of component --> it could have many different instances
+// essentially 'App' is a factory that produces instances of the actual components that get rendered to the DOM
+// *** TAKE-AWAY: We need to instantiate our components before rendering them to the DOM.
