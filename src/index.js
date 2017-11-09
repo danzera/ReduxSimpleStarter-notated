@@ -4,6 +4,9 @@ import React from 'react'; // Goes and gets dependency/library named 'react' and
 // React (core) library knows how to work with React components -- how to render them, nest them togeter...
 import ReactDOM from 'react-dom'; // ReactDOM library knows how to actually render the components to the DOM (insert them into the DOM)
 
+// We will be accessing YouTube's API for content via the browser
+const API_KEY = 'AIzaSyC_d_AOhR5ZNo2XA7avz83W2qJCmlr6bN0';
+
 // Create a new component that produces some HTML.
 const App = () => {
 	// This appears to return HTML, but is actually JSX. Can't have HTML in J.S. files.
