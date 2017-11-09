@@ -4,6 +4,9 @@ import React from 'react'; // Goes and gets dependency/library named 'react' and
 // React (core) library knows how to work with React components -- how to render them, nest them togeter...
 import ReactDOM from 'react-dom'; // ReactDOM library knows how to actually render the components to the DOM (insert them into the DOM)
 
+// import our custom SearchBar component
+import SearchBar from './components/SearchBar'; // need to include relative path for files we create (unlike npm packages above), but don't need to include '.js' for files that have '.js' extension
+
 // We will be accessing YouTube's API for content via the browser
 const API_KEY = 'AIzaSyC_d_AOhR5ZNo2XA7avz83W2qJCmlr6bN0';
 
@@ -12,7 +15,11 @@ const App = () => {
 	// This appears to return HTML, but is actually JSX. Can't have HTML in J.S. files.
 	// JSX is a subset/dialect of JavaScript that allows us to write what looks like HTML.
 	// However, it's really JavaScript behind the scenes (later transpiled by Webpack/Babel).
-	return <div>Hi!</div>;
+	return (
+		<div>
+			<SearchBar />{/* JSX comment style --  redering our SearchBar component inside our App component */}
+		</div>
+	); // multi-line JSX expressions are typically enclosed in parens
 }
 
 // Tell React to go find the <div> with class = "container",
