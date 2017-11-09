@@ -27,17 +27,31 @@ class SearchBar extends Component {
 		// could also concisely write our event handler function directly within the { }
 		// One input, one line arrow functions can simply be written as: event => console.log('SearchBar onChange event object', event)
 		// -- where event is the iput, no parens needed when there is only one input, and no { } are needed around one-line functions
-		return <input onChange={this.onInputChange} />; // render() needs to return JSX, otherwise we'll get an error -- "Warning: SearchBar(...): No `render` method found on the returned component instance: ..."
+		 // render() needs to return JSX, otherwise we'll get an error -- "Warning: SearchBar(...): No `render` method found on the returned component instance: ..."
+		return (
+			<div>
+				<input onChange={ event => this.setState({ term: event.target.value })} />
+				Value of input: { this.state.term }
+			</div>
+		); // A NOTE ON MANIPULATING STATE: state should only be manipulated using the this.setState() method outside of the constructor function
+		// pass this.setState() and object with the new state that we want to give to our component
+		// it's OK to reference a state's value, as above with this.state.term, but NEVER alter it this way outside of the constructor
+		// React is doing work behind the scenes and relies on this.setState to update things when changes to state occur
+		// in the case of the input above, every time the user alters the input field, this.setState is triggered, which in turn causes the render() method to be re-run
+		// when the component gets re-rendered, it does so with the updated state object which is reflected on the DOM
 	}
 
+	/* METHOD NOT ACTUALLY BEING USED PRESENTLY B/C EVENT HANDLER IS DEFINED ABOVE INLINE, BUT CAN BE DEFINED SEPARATELY LIKE THIS AS WELL
+		WHERE THE EVENT HANDLER IS A METHOD ON THE CLASS THAT GETS CALLED WITHIN THE COMPONENT -- SEE PREVIOUS COMMIT FOR THIS 
 	// declare an event handler for our SearchBar component to run whenever text changes within the input
 	// naming convention = "on" OR "handle" + element name + event name
 	// all browser events triggered by native elements (<input>, <div>, <span>, <etc...>) that have event handlers get passed an 'event' object
 	// the 'event' object - often abbreviated 'e' (just a variable name) - describes the context of the event that occured
-	onInputChange(e) {
-		console.log('SearchBar onInputChange event object', e);
-		console.log('SearchBar input content onInputChange', e.target.value);
+	onInputChange(event) {
+		console.log('SearchBar onInputChange event object', event);
+		console.log('SearchBar input content onInputChange', event.target.value);
 	}
+	*/
 }
 
 // in order to give other files access to this file's component, we need to export it
