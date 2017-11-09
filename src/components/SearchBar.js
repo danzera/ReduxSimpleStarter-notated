@@ -5,6 +5,19 @@ import React, { Component } from 'react'; // "Uncaught ReferenceError: React is 
 
 // create SearchBar class and give it access to all the functionality that React.Component has
 class SearchBar extends Component {
+	// all JavaScript classes have a special function called "constructor"
+	// it's the 1st and only function called whenever a new instance of a class is created
+	// it's reserved for class setup - initializing variables, state, etc.
+	constructor(props) {
+		// this calls the parent class' constructor function (React.Component, in this case)
+		super(props); // must include -- would get "Uncaught Error: Cannot find module "./components/SearchBar" if we didn't include this
+		
+		// need to initialize our state object (just a plain JavaScript object) before we can utilize state inside of our component
+		// functional components do not have state -- only class-based components do
+		// we initialize our component's state object with properties we want to record on the state
+		// in this case we want to keep track of the search term from the user's input, to do so we will record it on the state object
+		this.state = { searchTerm: ''};
+	}
 
 	// need to define a render() method for all CLASS-BASED COMPONENTS that we create in order for it to render itself / return some JSX
 	render() {
