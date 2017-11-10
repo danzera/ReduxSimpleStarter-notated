@@ -27,10 +27,13 @@ class SearchBar extends Component {
 		// could also concisely write our event handler function directly within the { }
 		// One input, one line arrow functions can simply be written as: event => console.log('SearchBar onChange event object', event)
 		// -- where event is the iput, no parens needed when there is only one input, and no { } are needed around one-line functions
-		 // render() needs to return JSX, otherwise we'll get an error -- "Warning: SearchBar(...): No `render` method found on the returned component instance: ..."
+		// render() needs to return JSX, otherwise we'll get an error -- "Warning: SearchBar(...): No `render` method found on the returned component instance: ..."
+		// setting value = this.state.term for the input makes it a "CONTROLLED COMPONENT", we're telling the input that it's value is provided by the state
 		return (
 			<div>
-				<input onChange={ event => this.setState({ term: event.target.value })} />
+				<input
+					value = { this.state.term }
+					onChange = { event => this.setState({ term: event.target.value }) } />
 				Value of input: { this.state.term }
 			</div>
 		); // A NOTE ON MANIPULATING STATE: state should only be manipulated using the this.setState() method outside of the constructor function
@@ -39,6 +42,11 @@ class SearchBar extends Component {
 		// React is doing work behind the scenes and relies on this.setState to update things when changes to state occur
 		// in the case of the input above, every time the user alters the input field, this.setState is triggered, which in turn causes the render() method to be re-run
 		// when the component gets re-rendered, it does so with the updated state object which is reflected on the DOM
+		// IN SUMMARY...
+		// 1. component renders initially with value = this.state.term (empty string based on the constructor)
+		// 2. event handler runs when an update is made to the <input> by the user, which calls this.setState() method
+		// 3. once the state has been updated, this.setState causes the render() method to be run 
+		// 4. the render() method runs again, accessing the now updated state object
 	}
 
 	/* METHOD NOT ACTUALLY BEING USED PRESENTLY B/C EVENT HANDLER IS DEFINED ABOVE INLINE, BUT CAN BE DEFINED SEPARATELY LIKE THIS AS WELL
