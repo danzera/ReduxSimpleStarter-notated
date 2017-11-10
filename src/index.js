@@ -3,12 +3,21 @@ import React from 'react'; // Goes and gets dependency/library named 'react' and
 // Original React library has diverged into two separate libraries.
 // React (core) library knows how to work with React components -- how to render them, nest them togeter...
 import ReactDOM from 'react-dom'; // ReactDOM library knows how to actually render the components to the DOM (insert them into the DOM)
+// import youtube-api-search npm package for ease of making calls to the YouTube API
+// youtube-api-search pkg makes use of the axios npm pkg, which is a "promise based HTTP client for the browser and Node.js"
+// https://www.npmjs.com/package/youtube-api-search
+// https://www.npmjs.com/package/axios
+import youTubeApiSearch from 'youtube-api-search';
 
 // import our custom SearchBar component
 import SearchBar from './components/SearchBar'; // need to include relative path for files we create (unlike npm packages above), but don't need to include '.js' for files that have '.js' extension
 
 // We will be accessing YouTube's API for content via the browser
 const API_KEY = 'AIzaSyC_d_AOhR5ZNo2XA7avz83W2qJCmlr6bN0';
+
+// sample usage of youTubeApiSearch -- takes an object with properties 'key' (Y.T. API key) and 'term' (search term) as well as a callback function
+// callback function gets called with 'response.data.items' returned from the You Tube API - an array of up to 5 objects with video information
+youTubeApiSearch({ key: API_KEY, term: 'foo fighters everlong'}, (searchResults => console.log('YouTube search results', searchResults)));
 
 // Create a new component that produces some HTML.
 const App = () => {

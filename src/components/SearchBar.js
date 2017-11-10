@@ -8,6 +8,11 @@ class SearchBar extends Component {
 	// all JavaScript classes have a special function called "constructor"
 	// it's the 1st and only function called whenever a new instance of a class is created
 	// it's reserved for class setup - initializing variables, state, etc.
+	/** TESTING OUT "Document This" for VSCode...fancy
+	 * Creates an instance of SearchBar.
+	 * @param {any} props 
+	 * @memberof SearchBar
+	 */
 	constructor(props) {
 		// this calls the parent class' constructor function (React.Component, in this case)
 		super(props); // must include -- would get "Uncaught Error: Cannot find module "./components/SearchBar" if we didn't include this
