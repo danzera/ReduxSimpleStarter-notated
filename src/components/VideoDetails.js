@@ -1,6 +1,10 @@
 import React from 'react';
 
 const VideoDetails = ({ videoObject }) => {
+	// return alternate JSX if no videObject is provided from props
+	if (!videoObject) {
+		return <div>Christian Pondering...</div>;
+	}
 	// we can construct the video URL from the base URL and the ID of the specific video we want to view
 	const videoId = videoObject.id.videoId;
 	// template strings -- more ES6 magic

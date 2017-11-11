@@ -11,6 +11,7 @@ import youTubeApiSearch from 'youtube-api-search';
 
 // import our custom components
 import SearchBar from './components/SearchBar'; // need to include relative path for files we create (unlike npm packages above), but don't need to include '.js' for files that have '.js' extension
+import VideoDetails from './components/VideoDetails';
 import VideoList from './components/VideoList';
 
 // We will be accessing YouTube's API for content via the browser
@@ -40,6 +41,7 @@ class App extends Component {
 		return (
 			<div>
 				<SearchBar />
+				<VideoDetails videoObject={ this.state.videosArray[0] } />
 				<VideoList videosArray={ this.state.videosArray } />
 			</div>
 		);
