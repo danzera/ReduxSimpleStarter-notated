@@ -4,7 +4,7 @@ import VideoListItem from './VideoListItem'; // again, relative path used when i
 
 // as noted in index.js, props is an object delivered from the parent component that renders <VideoList />
 // <App /> is keeping track of the videosArray and giving this component the most up-to-date information every time it re-renders
-const VideoList = props => {
+const VideoList = (props) => {
 	// using array methods such as .map is preferred to using loops for arrays
 	// .map takes a callback function called once for each element in the arry with parameters (currentArrayElement, currentIndex, originalArray)
 	// .map returns a new array containing whatever is returned from the C.B. function
