@@ -24,7 +24,7 @@ class App extends Component {
 
 		this.state = { videosArray: [] };
 		// including a default call to the YouTube API to pre-load our application with some video data -- additional notes on youTubeApiSearch internals down below
-		youTubeApiSearch({ key: API_KEY, term: 'foo fighters everlong'}, (videosArray => {
+		youTubeApiSearch({ key: API_KEY, term: 'foo fighters'}, (videosArray => {
 			console.log('setting <App /> state with videosArray', videosArray);
 			// more ES6 succintness below, { videosArray } is shorthand for { videosArray: videosArray }
 			// we can omit the property definition since the variable being referenced has the same name as the key we are assigning it to
