@@ -13,6 +13,7 @@ import youTubeApiSearch from 'youtube-api-search';
 import SearchBar from './components/SearchBar'; // need to include relative path for files we create (unlike npm packages above), but don't need to include '.js' for files that have '.js' extension
 import VideoDetails from './components/VideoDetails';
 import VideoList from './components/VideoList';
+import { NormalModuleReplacementPlugin } from '../../../Library/Caches/typescript/2.6/node_modules/@types/webpack';
 
 // We will be accessing YouTube's API for content via the browser
 const API_KEY = 'AIzaSyC_d_AOhR5ZNo2XA7avz83W2qJCmlr6bN0';
@@ -23,15 +24,25 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = { videosArray: [] };
+		// new state property selectedVideoObject will get passed to <VideoDetail />
+		// to update the selectedVideoObject a callback function will be passed FROM <App /> INTO <VideoList /> and then into <VideoListItem /> from there
+		// whenever a <VideoListItem /> is clicked, it will run the callback function with its respective videoObject
+		this.state = {
+			videosArray: [],
+			selectedVideoObject: null
+		};
+		
 		// including a default call to the YouTube API to pre-load our application with some video data -- additional notes on youTubeApiSearch internals down below
 		youTubeApiSearch({ key: API_KEY, term: 'foo fighters'}, (videosArray => {
 			console.log('setting <App /> state with videosArray', videosArray);
 			// more ES6 succintness below, { videosArray } is shorthand for { videosArray: videosArray }
 			// we can omit the property definition since the variable being referenced has the same name as the key we are assigning it to
-			this.setState({ videosArray })}));
-
-	}
+			this.setState({
+				videosArray,
+				selectedVideoObject: videosArray[0]
+			});
+		})); // end youTubeSearch()
+	} // end constructor()
 
 	// inside our <VideoList /> component below we define "a prop" on our JSX tag
 	// this is called "passing props", i.e. passing data from a parent component to a child component
@@ -41,12 +52,12 @@ class App extends Component {
 		return (
 			<div>
 				<SearchBar />
-				<VideoDetails videoObject={ this.state.videosArray[0] } />
+				<VideoDetails videoObject={ this.state.selectedVideoObject } />
 				<VideoList videosArray={ this.state.videosArray } />
 			</div>
 		);
-	}
-}
+	} // end render()
+} // end App class
 
 // Tell React to go find the <div> with class = "container",
 // then try to render the <App /> component's generated HTML into that <div>
