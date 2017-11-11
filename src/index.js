@@ -23,14 +23,20 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = { videosArray: [] };
+		this.state = {
+			videosArray: [],
+			selectedVideoObject: null
+		};
 		// including a default call to the YouTube API to pre-load our application with some video data -- additional notes on youTubeApiSearch internals down below
 		youTubeApiSearch({ key: API_KEY, term: 'foo fighters'}, (videosArray => {
 			console.log('setting <App /> state with videosArray', videosArray);
 			// more ES6 succintness below, { videosArray } is shorthand for { videosArray: videosArray }
 			// we can omit the property definition since the variable being referenced has the same name as the key we are assigning it to
-			this.setState({ videosArray })}));
-
+			this.setState({
+				videosArray,
+				selectedVideoObject: videosArray[0]
+			});
+		}));
 	}
 
 	// inside our <VideoList /> component below we define "a prop" on our JSX tag
@@ -41,7 +47,7 @@ class App extends Component {
 		return (
 			<div>
 				<SearchBar />
-				<VideoDetails videoObject={ this.state.videosArray[0] } />
+				<VideoDetails videoObject={ this.state.selectedVideoObject } />
 				<VideoList videosArray={ this.state.videosArray } />
 			</div>
 		);
