@@ -9,8 +9,9 @@ import ReactDOM from 'react-dom'; // ReactDOM library knows how to actually rend
 // https://www.npmjs.com/package/axios
 import youTubeApiSearch from 'youtube-api-search';
 
-// import our custom SearchBar component
+// import our custom components
 import SearchBar from './components/SearchBar'; // need to include relative path for files we create (unlike npm packages above), but don't need to include '.js' for files that have '.js' extension
+import VideoList from './components/VideoList';
 
 // We will be accessing YouTube's API for content via the browser
 const API_KEY = 'AIzaSyC_d_AOhR5ZNo2XA7avz83W2qJCmlr6bN0';
@@ -31,10 +32,15 @@ class App extends Component {
 
 	}
 
+	// inside our <VideoList /> component below we define "a prop" on our JSX tag
+	// this is called "passing props", i.e. passing data from a parent component to a child component
+	// when we use a functional component, the props get delivered to the function as key-value pairs in an object argument
+	// in this case, whenever <App /> re-renders, the most up-to-date version of videosArray will be delivered to our VideoList component
 	render() {
 		return (
 			<div>
 				<SearchBar />
+				<VideoList videosArray={ this.state.videosArray } />
 			</div>
 		);
 	}
