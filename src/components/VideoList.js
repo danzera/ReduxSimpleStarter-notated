@@ -10,11 +10,16 @@ const VideoList = props => {
 	// .map returns a new array containing whatever is returned from the C.B. function
 	// this allows us to create some JSX for each element in our VideosArray (each a new instance of <VideoListItem />
 	// it also allows us to pass each video's information as props when creating each unique instance of <VideoListItem />
+	// React assumes we're rendering a list when it renders an array of components
+	// each element of the array needs a unique identifier attached as a prop called "key"
+	// in this case we can use each video's etag, something that will be consistent when the components re-render
+	// without a 'key' prop we'd get a console "Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of `VideoList`."
 	const videoListItemsArray = props.videosArray.map((videoObject, index, videosArray) => {
 		console.log('creating a new <VideoListItem /> component for', videoObject);
-		return <VideoListItem videoObject={ videoObject } />;
+		return <VideoListItem key={ videoObject.etag } videoObject={ videoObject } />;
 	});
 
+	// React recognizes when an array is an array of components and renders them accordingly
 	return (
 		<ul className="col-md-4 list-group">
 			{videoListItemsArray}
