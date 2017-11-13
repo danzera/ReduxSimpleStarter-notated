@@ -52,7 +52,10 @@ class App extends Component {
 			<div>
 				<SearchBar />
 				<VideoDetails videoObject={ this.state.selectedVideoObject } />
-				<VideoList videosArray={ this.state.videosArray } />
+				{/* pass <VideoList /> a callback function (subsequently passed to <VideoListItem /> that sets the selectedVideoObject in the state of <App /> */}
+				<VideoList
+					onVideoSelect={ selectedVideoObject => this.setState({ selectedVideoObject }) }
+					videosArray={ this.state.videosArray } />
 			</div>
 		);
 	} // end render()

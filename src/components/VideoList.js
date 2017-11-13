@@ -16,7 +16,13 @@ const VideoList = (props) => {
 	// without a 'key' prop we'd get a console "Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of `VideoList`."
 	const videoListItemsArray = props.videosArray.map((videoObject, index, videosArray) => {
 		console.log('creating a new <VideoListItem /> component for', videoObject);
-		return <VideoListItem key={ videoObject.etag } videoObject={ videoObject } />;
+		// passing the callback function down from <App /> to <VideoListItem /> that sets the <App /> component's selectedVideoObject state property
+		return (
+			<VideoListItem
+				key={ videoObject.etag }
+				onVideoSelect={ props.onVideoSelect }
+				videoObject={ videoObject } />
+		);
 	});
 
 	// React recognizes when an array is an array of components and renders them accordingly
