@@ -35,7 +35,7 @@ class SearchBar extends Component {
 		// render() needs to return JSX, otherwise we'll get an error -- "Warning: SearchBar(...): No `render` method found on the returned component instance: ..."
 		// setting value = this.state.term for the input makes it a "CONTROLLED COMPONENT", we're telling the input that it's value is provided by the state
 		return (
-			<div>
+			<div className="search-bar">
 				<input
 					value = { this.state.term }
 					onChange = { event => this.setState({ term: event.target.value }) } />
