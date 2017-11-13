@@ -15,7 +15,6 @@ const VideoList = (props) => {
 	// in this case we can use each video's etag, something that will be consistent when the components re-render
 	// without a 'key' prop we'd get a console "Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of `VideoList`."
 	const videoListItemsArray = props.videosArray.map((videoObject, index, videosArray) => {
-		console.log('creating a new <VideoListItem /> component for', videoObject);
 		// passing the callback function down from <App /> to <VideoListItem /> that sets the <App /> component's selectedVideoObject state property
 		return (
 			<VideoListItem

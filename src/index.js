@@ -32,7 +32,14 @@ class App extends Component {
 		};
 		
 		// including a default call to the YouTube API to pre-load our application with some video data -- additional notes on youTubeApiSearch internals down below
-		youTubeApiSearch({ key: API_KEY, term: 'foo fighters'}, (videosArray => {
+		this.youTubeSearch('star wars');
+	} // end constructor()
+
+	// define a class method for searching You Tube
+	// used by the constructor to set initial state
+	// also passed as a callback to <SearchBar /> for updating the state
+	youTubeSearch(term) {
+		youTubeApiSearch({ key: API_KEY, term }, videosArray => {
 			console.log('setting <App /> state with videosArray', videosArray);
 			// more ES6 succintness below, { videosArray } is shorthand for { videosArray: videosArray }
 			// we can omit the property definition since the variable being referenced has the same name as the key we are assigning it to
@@ -40,8 +47,8 @@ class App extends Component {
 				videosArray,
 				selectedVideoObject: videosArray[0]
 			});
-		})); // end youTubeSearch()
-	} // end constructor()
+		});
+	} // end youTubeSearch()
 
 	// inside our <VideoList /> component below we define "a prop" on our JSX tag
 	// this is called "passing props", i.e. passing data from a parent component to a child component
@@ -50,7 +57,7 @@ class App extends Component {
 	render() {
 		return (
 			<div>
-				<SearchBar />
+				<SearchBar onSearchTermChange={ term => this.youTubeSearch(term) } />
 				<VideoDetails videoObject={ this.state.selectedVideoObject } />
 				{/* pass <VideoList /> a callback function (subsequently passed to <VideoListItem /> that sets the selectedVideoObject in the state of <App /> */}
 				<VideoList

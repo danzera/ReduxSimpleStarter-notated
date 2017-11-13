@@ -24,6 +24,14 @@ class SearchBar extends Component {
 		this.state = { searchTerm: ''};
 	}
 
+	// define a class method that updates the state of <SearchBar />
+	// it also calls the onSearchTermChange() callback, which updates the state of <App />
+	// this function gets called below onChange for our <SearchBar /> input field
+	onInputChange(searchTerm) {
+		this.setState({ searchTerm });
+		this.props.onSearchTermChange(searchTerm);
+	}
+
 	// need to define a render() method for all CLASS-BASED COMPONENTS that we create in order for it to render itself / return some JSX
 	render() {
 		// inside our JSX we pass our onInputChange() method defined below
@@ -37,9 +45,9 @@ class SearchBar extends Component {
 		return (
 			<div className="search-bar">
 				<input
-					value = { this.state.term }
-					onChange = { event => this.setState({ term: event.target.value }) } />
-				Value of input: { this.state.term }
+					value = { this.state.searchTerm }
+					onChange = { event => this.onInputChange(event.target.value) } />
+				Value of input: { this.state.searchTerm }
 			</div>
 		); // A NOTE ON MANIPULATING STATE: state should only be manipulated using the this.setState() method outside of the constructor function
 		// pass this.setState() and object with the new state that we want to give to our component
