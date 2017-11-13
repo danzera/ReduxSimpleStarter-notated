@@ -13,7 +13,6 @@ import youTubeApiSearch from 'youtube-api-search';
 import SearchBar from './components/SearchBar'; // need to include relative path for files we create (unlike npm packages above), but don't need to include '.js' for files that have '.js' extension
 import VideoDetails from './components/VideoDetails';
 import VideoList from './components/VideoList';
-import { NormalModuleReplacementPlugin } from '../../../Library/Caches/typescript/2.6/node_modules/@types/webpack';
 
 // We will be accessing YouTube's API for content via the browser
 const API_KEY = 'AIzaSyC_d_AOhR5ZNo2XA7avz83W2qJCmlr6bN0';
