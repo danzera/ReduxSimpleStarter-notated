@@ -23,10 +23,14 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 
+		// new state property selectedVideoObject will get passed to <VideoDetail />
+		// to update the selectedVideoObject a callback function will be passed FROM <App /> INTO <VideoList /> and then into <VideoListItem /> from there
+		// whenever a <VideoListItem /> is clicked, it will run the callback function with its respective videoObject
 		this.state = {
 			videosArray: [],
 			selectedVideoObject: null
 		};
+		
 		// including a default call to the YouTube API to pre-load our application with some video data -- additional notes on youTubeApiSearch internals down below
 		youTubeApiSearch({ key: API_KEY, term: 'foo fighters'}, (videosArray => {
 			console.log('setting <App /> state with videosArray', videosArray);
@@ -36,8 +40,8 @@ class App extends Component {
 				videosArray,
 				selectedVideoObject: videosArray[0]
 			});
-		}));
-	}
+		})); // end youTubeSearch()
+	} // end constructor()
 
 	// inside our <VideoList /> component below we define "a prop" on our JSX tag
 	// this is called "passing props", i.e. passing data from a parent component to a child component
@@ -51,8 +55,8 @@ class App extends Component {
 				<VideoList videosArray={ this.state.videosArray } />
 			</div>
 		);
-	}
-}
+	} // end render()
+} // end App class
 
 // Tell React to go find the <div> with class = "container",
 // then try to render the <App /> component's generated HTML into that <div>
