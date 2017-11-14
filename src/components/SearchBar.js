@@ -47,7 +47,6 @@ class SearchBar extends Component {
 				<input
 					value = { this.state.searchTerm }
 					onChange = { event => this.onInputChange(event.target.value) } />
-				Value of input: { this.state.searchTerm }
 			</div>
 		); // A NOTE ON MANIPULATING STATE: state should only be manipulated using the this.setState() method outside of the constructor function
 		// pass this.setState() and object with the new state that we want to give to our component
