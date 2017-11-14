@@ -57,7 +57,8 @@ class App extends Component {
 	// when we use a functional component, the props get delivered to the function as key-value pairs in an object argument
 	// in this case, whenever <App /> re-renders, the most up-to-date version of videosArray will be delivered to our VideoList component
 	render() {
-
+		// using lodash to throttle api searches, as opposed to instantly sending search requests to the youtube API
+		// https://lodash.com/docs/#debounce
 		const youTubeSearch = _.debounce((term) => { console.log('delaying'); this.youTubeSearch(term); }, 300);
 
 		return (
