@@ -10,7 +10,7 @@ const VideoListItem = ({ videoObject, onVideoSelect }) => {
 	// include onClick() function for our <VideListItem /> that references the callback function that was passed down from <App /> to set the selectedVideoObject propert on the state for <App />
 	return (
 		<li onClick={ () => onVideoSelect(videoObject) } className="list-group-item">
-			<div className="video-list media">
+			<div className="video-item media">
 				<div className="media-left">
 					<img className="media-object" src={ imageUrl } />
 				</div>

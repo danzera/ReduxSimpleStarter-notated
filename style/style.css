@@ -7,8 +7,7 @@
 	width: 75%;
 }
 
-/* unsure what item this is intended to be applied to */
-.video-item {
+.video-item img {
 	max-width: 64px;
 }
 
