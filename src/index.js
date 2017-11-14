@@ -8,6 +8,8 @@ import ReactDOM from 'react-dom'; // ReactDOM library knows how to actually rend
 // https://www.npmjs.com/package/youtube-api-search
 // https://www.npmjs.com/package/axios
 import youTubeApiSearch from 'youtube-api-search';
+// using lodash to throttle api searches, as opposed to instantly sending search requests to the youtube API
+import _ from 'lodash';
 
 // import our custom components
 import SearchBar from './components/SearchBar'; // need to include relative path for files we create (unlike npm packages above), but don't need to include '.js' for files that have '.js' extension
@@ -55,9 +57,12 @@ class App extends Component {
 	// when we use a functional component, the props get delivered to the function as key-value pairs in an object argument
 	// in this case, whenever <App /> re-renders, the most up-to-date version of videosArray will be delivered to our VideoList component
 	render() {
+
+		const youTubeSearch = _.debounce((term) => { console.log('delaying'); this.youTubeSearch(term); }, 300);
+
 		return (
 			<div>
-				<SearchBar onSearchTermChange={ term => this.youTubeSearch(term) } />
+				<SearchBar onSearchTermChange={ youTubeSearch } />
 				<VideoDetails videoObject={ this.state.selectedVideoObject } />
 				{/* pass <VideoList /> a callback function (subsequently passed to <VideoListItem /> that sets the selectedVideoObject in the state of <App /> */}
 				<VideoList
